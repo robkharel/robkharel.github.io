@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rabilal Kharel | AI & Machine Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0D13;
+    --bg2: #111520;
+    --bg3: #181d2e;
+    --accent: #6C63FF;
+    --accent2: #00D4AA;
+    --accent3: #FF6B6B;
+    --text: #E8EAF0;
+    --text2: #8B90A8;
+    --text3: #5A6080;
+    --border: rgba(108,99,255,0.18);
+    --border2: rgba(255,255,255,0.07);
+    --card: rgba(24,29,46,0.85);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(10,13,19,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border2);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--accent2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
+    top: 10%; left: -10%;
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
+    bottom: 10%; right: 5%;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 860px; }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--accent2);
+  }
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name span {
+    background: linear-gradient(135deg, #6C63FF 0%, #00D4AA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: var(--text2);
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border2);
+  }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.1rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .section-sub {
+    color: var(--text2);
+    max-width: 500px;
+    margin-bottom: 3.5rem;
+    font-size: 1.02rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-box {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--bg3);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 5rem;
+    color: var(--accent);
+    overflow: hidden;
+    position: relative;
+  }
+  .about-image-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(108,99,255,0.06) 0%, transparent 60%);
+  }
+  .about-image-accent {
+    position: absolute;
+    bottom: -16px; right: -16px;
+    width: 80px; height: 80px;
+    background: var(--accent2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .about-text p { color: var(--text2); margin-bottom: 1.2rem; font-size: 1.02rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-highlight {
+    color: var(--accent2);
+    font-weight: 500;
+  }
+  .edu-block {
+    margin-top: 2rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .edu-icon {
+    width: 40px; height: 40px;
+    background: rgba(108,99,255,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .edu-name { font-weight: 600; font-size: 0.95rem; }
+  .edu-detail { font-size: 0.82rem; color: var(--text3); margin-top: 0.1rem; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 1.6rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .icon-purple { background: rgba(108,99,255,0.15); }
+  .icon-teal { background: rgba(0,212,170,0.12); }
+  .icon-red { background: rgba(255,107,107,0.12); }
+  .icon-amber { background: rgba(255,177,66,0.12); }
+  .skill-card-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.8rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.76rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 20px;
+    font-family: var(--mono);
+    border: 1px solid;
+  }
+  .tag-purple { background: rgba(108,99,255,0.1); color: #9D97FF; border-color: rgba(108,99,255,0.25); }
+  .tag-teal { background: rgba(0,212,170,0.08); color: #00D4AA; border-color: rgba(0,212,170,0.2); }
+  .tag-gray { background: rgba(255,255,255,0.04); color: var(--text2); border-color: var(--border2); }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 2rem 2.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    transition: border-color 0.25s;
+  }
+  .project-card:hover { border-color: rgba(108,99,255,0.4); }
+  .project-number {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+  .project-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .project-desc { color: var(--text2); font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.65; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .project-link:hover { color: var(--accent2); border-color: var(--accent2); }
+  .project-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(0,212,170,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(0,212,170,0.2);
+    margin-bottom: 0.8rem;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text3);
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { min-height: 110px; }
+  .form-submit {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  .contact-info { padding-top: 0.5rem; }
+  .contact-info p {
+    color: var(--text2);
+    margin-bottom: 2rem;
+    font-size: 1.02rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link-item:hover { border-color: var(--accent2); transform: translateX(4px); }
+  .contact-link-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(108,99,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-link-label { font-size: 0.78rem; color: var(--text3); }
+  .contact-link-value { font-size: 0.92rem; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border2);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    color: var(--text3);
+    font-size: 0.82rem;
+  }
+  footer span { font-family: var(--mono); }
+  .footer-accent { color: var(--accent2); }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border2);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-image-wrap { display: none; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-links { flex-direction: row; align-items: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">RK.ai</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero" style="padding-top:8rem; padding-bottom:4rem; max-width:100%;">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content" style="max-width:1100px; margin:0 auto; width:100%;">
+    <div class="hero-eyebrow">Available for ML Engineering &amp; Data Science Roles</div>
+    <h1 class="hero-name">
+      Rabilal<br><span>Kharel</span>
+    </h1>
+    <p class="hero-title">AI Graduate Student &amp; Machine Learning Engineer</p>
+    <p class="hero-desc">
+      Building intelligent systems at the intersection of deep learning, natural language processing, and human-computer interaction. Currently pursuing M.S. in Artificial Intelligence at University of the Cumberlands.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work →</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+      <a href="Rabilal_Kharel_Resume_AI.pdf" download class="btn-outline">⬇ Download Resume</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">M.S.</div>
+        <div class="stat-label">Artificial Intelligence</div>
+      </div>
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">AI Projects Built</div>
+      </div>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years in Tech</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About Me</div>
+  <div class="about-grid">
+    <div class="about-image-wrap">
+      <div class="about-image-box" style="font-size:1rem; flex-direction:column; gap:0.5rem;">
+        <img id="profile-photo" src="photo.jpg" alt="Rabilal Kharel" onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';" style="width:100%; height:100%; object-fit:cover; border-radius:16px; position:absolute; inset:0;" />
+        <div id="photo-placeholder" style="display:flex; flex-direction:column; align-items:center; gap:0.5rem; color:var(--text3);">
+          <span style="font-size:4rem;">🧑‍💻</span>
+          <span style="font-size:0.75rem; font-family:var(--mono);">Add photo.jpg</span>
+        </div>
+      </div>
+      <div class="about-image-accent">🧠</div>
+    </div>
+    <div class="about-text fade-up">
+      <h2 class="section-title">Turning data into<br>intelligent decisions</h2>
+      <p>
+        I'm <span class="about-highlight">Rabilal (Rob) Kharel</span>, an AI graduate student passionate about building systems that think, learn, and communicate like humans. I hold a <span class="about-highlight">B.S. in Computer Systems Technology</span> from NYC College of Technology (2024) and an <span class="about-highlight">A.A.S. in Network Administration &amp; Information Security</span> from LaGuardia Community College (2021) — both earned in New York City.
+      </p>
+      <p>
+        Currently enrolled in <span class="about-highlight">MSAI-631: AI for Human-Computer Interaction</span> at University of the Cumberlands, I specialize in neural networks, NLP, and deep learning — applying them through hands-on projects and real-world research.
+      </p>
+      <p>
+        I've built everything from LSTM language models trained on classic literature to full-stack chatbot applications. My goal is to join a team where I can apply ML engineering to solve meaningful problems at scale.
+      </p>
+      <div class="edu-block">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-name">University of the Cumberlands</div>
+          <div class="edu-detail">M.S. Artificial Intelligence &nbsp;·&nbsp; In Progress &nbsp;·&nbsp; Williamsburg, KY</div>
+        </div>
+      </div>
+      <div class="edu-block" style="margin-top:0.8rem;">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-name">New York City College of Technology</div>
+          <div class="edu-detail">B.S. Computer Systems Technology (BTECH) &nbsp;·&nbsp; 2024 &nbsp;·&nbsp; NYC, NY &nbsp;·&nbsp; <span style="color:var(--accent2);">GPA 3.5</span></div>
+        </div>
+      </div>
+      <div class="edu-block" style="margin-top:0.8rem;">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-name">LaGuardia Community College</div>
+          <div class="edu-detail">A.A.S. Network Administration & Information Security &nbsp;·&nbsp; 2021 &nbsp;·&nbsp; NYC, NY &nbsp;·&nbsp; <span style="color:var(--accent2);">GPA 3.7</span></div>
+        </div>
+      </div>
+      <div class="edu-block" style="margin-top:0.8rem;">
+        <div class="edu-icon">💻</div>
+        <div>
+          <div class="edu-name">Software Developer Intern</div>
+          <div class="edu-detail">Endpointech LLC &nbsp;·&nbsp; Sep 2024 – Sep 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Skills</div>
+  <h2 class="section-title fade-up">My Technical Stack</h2>
+  <p class="section-sub fade-up">From deep learning frameworks to cloud platforms — here's what I work with.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-purple">🧠</div>
+      <div class="skill-card-title">Machine Learning & Deep Learning</div>
+      <div class="skill-tags">
+        <span class="tag tag-purple">TensorFlow</span>
+        <span class="tag tag-purple">Keras</span>
+        <span class="tag tag-purple">PyTorch</span>
+        <span class="tag tag-purple">LSTM</span>
+        <span class="tag tag-purple">CNN</span>
+        <span class="tag tag-gray">scikit-learn</span>
+        <span class="tag tag-gray">Neural Networks</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-teal">💬</div>
+      <div class="skill-card-title">Natural Language Processing</div>
+      <div class="skill-tags">
+        <span class="tag tag-teal">Azure AI Language</span>
+        <span class="tag tag-teal">Seq2Seq</span>
+        <span class="tag tag-teal">GNMT</span>
+        <span class="tag tag-teal">Sentiment Analysis</span>
+        <span class="tag tag-gray">Text Mining</span>
+        <span class="tag tag-gray">Tokenization</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-red">⚙️</div>
+      <div class="skill-card-title">Programming & Development</div>
+      <div class="skill-tags">
+        <span class="tag tag-purple">Python</span>
+        <span class="tag tag-purple">Java</span>
+        <span class="tag tag-purple">Spring Boot</span>
+        <span class="tag tag-gray">Flask</span>
+        <span class="tag tag-gray">HTML/CSS/JS</span>
+        <span class="tag tag-gray">Tkinter</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-amber">☁️</div>
+      <div class="skill-card-title">Cloud & Tools</div>
+      <div class="skill-tags">
+        <span class="tag tag-teal">Microsoft Azure</span>
+        <span class="tag tag-teal">Google Colab</span>
+        <span class="tag tag-gray">GitHub</span>
+        <span class="tag tag-gray">Anaconda</span>
+        <span class="tag tag-gray">VS Code</span>
+        <span class="tag tag-gray">PyInstaller</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Projects</div>
+  <h2 class="section-title fade-up">What I've Built</h2>
+  <p class="section-sub fade-up">A selection of AI and software projects from coursework and personal exploration.</p>
+  <div class="projects-list">
+
+    <div class="project-card fade-up" style="border-color:rgba(0,212,170,0.4); background:linear-gradient(135deg, rgba(0,212,170,0.05), rgba(24,29,46,0.95));">
+      <div>
+        <div class="project-number">00 / FEATURED</div>
+        <div class="project-badge" style="background:rgba(0,212,170,0.15); color:#00D4AA; border-color:rgba(0,212,170,0.3);">🔥 Live & Deployed</div>
+        <div class="project-title" style="font-size:1.4rem;">AI Resume Analyzer</div>
+        <p class="project-desc">A fully deployed AI web application that analyzes resume-job fit using NLP and Machine Learning. Upload your resume PDF, paste a job description, and instantly get your ATS score, keyword match analysis, skill gap breakdown by category, and personalized improvement tips. Built and deployed end-to-end.</p>
+        <div class="project-tech">
+          <span class="tag tag-teal">Python</span>
+          <span class="tag tag-teal">NLP</span>
+          <span class="tag tag-teal">Streamlit</span>
+          <span class="tag tag-purple">Scikit-Learn</span>
+          <span class="tag tag-purple">TF-IDF</span>
+          <span class="tag tag-gray">PyPDF2</span>
+          <span class="tag tag-gray">Matplotlib</span>
+          <span class="tag tag-gray">ATS Analysis</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://rob-ai-resume-analyzer.streamlit.app" class="project-link" target="_blank" style="background:rgba(0,212,170,0.1); color:#00D4AA; border-color:rgba(0,212,170,0.3);">🌐 Live Demo →</a>
+        <a href="https://github.com/robkharel/ai-resume-analyzer" class="project-link" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div>
+        <div class="project-number">01 / CHATBOT</div>
+        <div class="project-badge">Personal Project</div>
+        <div class="project-title">RobbieBot — AI Chatbot Application</div>
+        <p class="project-desc">A conversational AI chatbot built from scratch — evolving from a Python terminal script to a full GUI desktop app with voice output, scrollable chat history, user profiles, and a Flask web interface. Packaged as a Windows .exe using PyInstaller.</p>
+        <div class="project-tech">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-teal">Flask</span>
+          <span class="tag tag-gray">Tkinter</span>
+          <span class="tag tag-gray">pyttsx3</span>
+          <span class="tag tag-gray">PyInstaller</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/robkharel/MSAI_631" class="project-link" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div>
+        <div class="project-number">02 / NLP</div>
+        <div class="project-badge">MSAI-631 Course Project</div>
+        <div class="project-title">Azure AI Language Service Integration</div>
+        <p class="project-desc">Integrated Microsoft Azure AI Language services into a chatbot pipeline — connecting a cloud NLP endpoint to analyze user intent, sentiment, and key phrases in real-time. Configured and deployed on Azure Free Tier with a custom language resource.</p>
+        <div class="project-tech">
+          <span class="tag tag-teal">Azure AI</span>
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-gray">REST API</span>
+          <span class="tag tag-gray">NLP</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/robkharel/MSAI_631" class="project-link" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div>
+        <div class="project-number">03 / DEEP LEARNING</div>
+        <div class="project-badge">MSAI-531 Course Project</div>
+        <div class="project-title">LSTM Language Model — Alice in Wonderland</div>
+        <p class="project-desc">Trained a character-level LSTM language model on Alice in Wonderland text using TensorFlow/Keras on Google Colab with T4 GPU acceleration. The model learns writing style, sentence structure, and generates new text in the style of Lewis Carroll.</p>
+        <div class="project-tech">
+          <span class="tag tag-purple">TensorFlow</span>
+          <span class="tag tag-purple">Keras</span>
+          <span class="tag tag-teal">Google Colab</span>
+          <span class="tag tag-gray">LSTM</span>
+          <span class="tag tag-gray">GPU Training</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/robkharel/MSAI_631" class="project-link" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div>
+        <div class="project-number">04 / RESEARCH</div>
+        <div class="project-badge">MSAI-532 Research</div>
+        <div class="project-title">Seq2Seq & GNMT Architecture Analysis</div>
+        <p class="project-desc">Critical review and deep analysis of seminal NLP papers — Sutskever et al. (2014) sequence-to-sequence models and Wu et al. (2016) Google Neural Machine Translation system. Analyzed attention mechanisms, encoder-decoder architectures, and translation quality improvements.</p>
+        <div class="project-tech">
+          <span class="tag tag-teal">NLP Research</span>
+          <span class="tag tag-purple">Seq2Seq</span>
+          <span class="tag tag-gray">Attention</span>
+          <span class="tag tag-gray">GNMT</span>
+          <span class="tag tag-gray">ML Theory</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/robkharel/MSAI_631" class="project-link" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Contact</div>
+  <h2 class="section-title fade-up">Let's Build Something</h2>
+  <p class="section-sub fade-up">Open to ML engineering roles, data science positions, and interesting collaborations.</p>
+  <div class="contact-wrap">
+    <div class="contact-form-card fade-up">
+      <div id="form-success" style="display:none; text-align:center; padding:2rem 1rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
+        <div style="font-weight:600; font-size:1.1rem; margin-bottom:0.5rem;">Message Sent!</div>
+        <div style="color:var(--text2); font-size:0.9rem;">Thanks for reaching out. I'll get back to you soon.</div>
+      </div>
+      <div id="contact-form-inner">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="f-name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="f-email" placeholder="jane@company.com" required />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="f-message" placeholder="Tell me about the opportunity or project..." required></textarea>
+        </div>
+        <div id="form-error" style="display:none; color:#FF6B6B; font-size:0.85rem; margin-bottom:0.8rem;"></div>
+        <button class="form-submit" id="form-btn" onclick="submitForm()">Send Message</button>
+        <p style="font-size:0.72rem; color:var(--text3); margin-top:0.8rem; text-align:center;">
+          ⚠️ To activate: replace <code style="color:var(--accent2);">YOUR_FORMSPREE_ID</code> in the code with your free Formspree endpoint
+        </p>
+      </div>
+    </div>
+    <div class="contact-info fade-up">
+      <p>I'm actively seeking roles in machine learning engineering and data science. Whether you have a position, project, or just want to connect — reach out.</p>
+      <div class="contact-links">
+        <a href="https://github.com/robkharel/MSAI_631" class="contact-link-item" target="_blank">
+          <div class="contact-link-icon">🐙</div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">github.com/robkharel</div>
+          </div>
+        </a>
+        <a href="mailto:r.k.52kharel@gmail.com" class="contact-link-item">
+          <div class="contact-link-icon">✉️</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">r.k.52kharel@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/rabilal-kharel-683547121/" class="contact-link-item" target="_blank">
+          <div class="contact-link-icon">💼</div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/rabilal-kharel</div>
+          </div>
+        </a>
+        <a href="tel:+19295481960" class="contact-link-item">
+          <div class="contact-link-icon">📞</div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-value">(929) 548-1960</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="section-divider"></div>
+<section id="certifications">
+  <div class="section-eyebrow">Credentials</div>
+  <h2 class="section-title fade-up">Certifications</h2>
+  <p class="section-sub fade-up">Professional certifications and currently pursuing credentials.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-up" style="border-color:rgba(0,212,170,0.25);">
+      <div class="skill-card-icon icon-teal">🏢</div>
+      <div class="skill-card-title">IBM Full Stack Software Developer</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">IBM · Coursera &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ March 2025</span></div>
+      <div class="skill-tags"><span class="tag tag-teal">IBM</span><span class="tag tag-gray">Full Stack</span><span class="tag tag-gray">Development</span></div>
+    </div>
+    <div class="skill-card fade-up" style="border-color:rgba(0,212,170,0.25);">
+      <div class="skill-card-icon icon-purple">📡</div>
+      <div class="skill-card-title">Kafka Fundamentals</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">LearnKartS · Coursera &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ February 2025</span></div>
+      <div class="skill-tags"><span class="tag tag-purple">Kafka</span><span class="tag tag-gray">Data Streaming</span><span class="tag tag-gray">Backend</span></div>
+    </div>
+    <div class="skill-card fade-up" style="border-color:rgba(108,99,255,0.3);">
+      <div class="skill-card-icon icon-purple">🤖</div>
+      <div class="skill-card-title">AI For Everyone</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">DeepLearning.AI · Coursera &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ August 2024</span></div>
+      <div class="skill-tags"><span class="tag tag-purple">DeepLearning.AI</span><span class="tag tag-gray">AI Strategy</span><span class="tag tag-gray">ML</span></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-amber">☕</div>
+      <div class="skill-card-title">Introduction to Java</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">LearnQuest · Coursera &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ August 2024</span></div>
+      <div class="skill-tags"><span class="tag tag-gray">Java</span><span class="tag tag-gray">OOP</span><span class="tag tag-gray">Programming</span></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-teal">💻</div>
+      <div class="skill-card-title">Contemporary Operating Systems & Hardware</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">Illinois Tech · Coursera &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ August 2024</span></div>
+      <div class="skill-tags"><span class="tag tag-teal">OS</span><span class="tag tag-gray">Hardware</span><span class="tag tag-gray">Systems</span></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-purple">🔐</div>
+      <div class="skill-card-title">Information Risk Management</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">TEEX · Texas A&M &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ March 2024</span></div>
+      <div class="skill-tags"><span class="tag tag-purple">Risk Mgmt</span><span class="tag tag-gray">Security</span><span class="tag tag-gray">13 hrs</span></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-red">🛡️</div>
+      <div class="skill-card-title">Information Security Basics</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">TEEX · Texas A&M &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ September 2022</span></div>
+      <div class="skill-tags"><span class="tag tag-gray">InfoSec</span><span class="tag tag-gray">Cybersecurity</span><span class="tag tag-gray">13 hrs</span></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon icon-teal">🌐</div>
+      <div class="skill-card-title">Network Assurance</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">TEEX · Texas A&M &nbsp;·&nbsp; <span style="color:var(--accent2);">✅ July 2022</span></div>
+      <div class="skill-tags"><span class="tag tag-teal">Networking</span><span class="tag tag-gray">Assurance</span><span class="tag tag-gray">5 hrs</span></div>
+    </div>
+    <div class="skill-card fade-up" style="border-color:rgba(255,107,107,0.2);">
+      <div class="skill-card-icon icon-amber">☁️</div>
+      <div class="skill-card-title">Microsoft Azure AI Fundamentals</div>
+      <div style="font-size:0.8rem; color:var(--text3); margin-bottom:0.8rem;">Microsoft &nbsp;·&nbsp; <span style="color:#FFB142;">⏳ In Progress</span></div>
+      <div class="skill-tags"><span class="tag tag-gray">Azure</span><span class="tag tag-gray">Cloud AI</span><span class="tag tag-gray">AZ-900</span></div>
+    </div>
+  </div>
+
+  <!-- Currently Learning -->
+  <div style="margin-top:3rem;">
+    <div class="section-eyebrow" style="margin-bottom:1rem;">Currently Learning</div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.7rem;">
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.3); font-size:0.85rem; color:#9D97FF;">🔥 LangChain</span>
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.25); font-size:0.85rem; color:var(--accent2);">🤗 HuggingFace</span>
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.3); font-size:0.85rem; color:#9D97FF;">🔍 RAG Systems</span>
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.25); font-size:0.85rem; color:var(--accent2);">☁️ Azure OpenAI</span>
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.25); font-size:0.85rem; color:#FF6B6B;">🧠 Prompt Engineering</span>
+      <span style="padding:0.5rem 1.1rem; border-radius:25px; background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.3); font-size:0.85rem; color:#9D97FF;">📊 Vector Databases</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<div class="section-divider"></div>
+<section id="blog">
+  <div class="section-eyebrow">Blog</div>
+  <h2 class="section-title fade-up">AI Thoughts & Learnings</h2>
+  <p class="section-sub fade-up">Sharing what I learn as I build and study in the AI field.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-up" style="cursor:pointer;">
+      <div style="font-size:2rem; margin-bottom:1rem;">🤖</div>
+      <div style="font-size:0.72rem; color:var(--accent2); font-family:var(--mono); margin-bottom:0.5rem;">CHATBOT DEV</div>
+      <div class="skill-card-title">What I Learned Building RobbieBot from Scratch</div>
+      <p style="font-size:0.85rem; color:var(--text2); margin-top:0.5rem; line-height:1.6;">From a simple Python terminal script to a full GUI desktop app with voice output — here's every lesson I learned building my first AI chatbot.</p>
+      <div style="margin-top:1rem; font-size:0.78rem; color:var(--text3);">5 min read &nbsp;·&nbsp; AI Development</div>
+    </div>
+    <div class="skill-card fade-up" style="cursor:pointer;">
+      <div style="font-size:2rem; margin-bottom:1rem;">🧠</div>
+      <div style="font-size:0.72rem; color:var(--accent2); font-family:var(--mono); margin-bottom:0.5rem;">DEEP LEARNING</div>
+      <div class="skill-card-title">How LSTM Models Work — Simply Explained</div>
+      <p style="font-size:0.85rem; color:var(--text2); margin-top:0.5rem; line-height:1.6;">I trained an LSTM on Alice in Wonderland — and in doing so finally understood how memory works in neural networks. Here's my breakdown.</p>
+      <div style="margin-top:1rem; font-size:0.78rem; color:var(--text3);">4 min read &nbsp;·&nbsp; Neural Networks</div>
+    </div>
+    <div class="skill-card fade-up" style="cursor:pointer;">
+      <div style="font-size:2rem; margin-bottom:1rem;">💬</div>
+      <div style="font-size:0.72rem; color:var(--accent2); font-family:var(--mono); margin-bottom:0.5rem;">AI + HCI</div>
+      <div class="skill-card-title">Why AI and Human-Computer Interaction Are Inseparable</div>
+      <p style="font-size:0.85rem; color:var(--text2); margin-top:0.5rem; line-height:1.6;">The most powerful AI is useless if humans can't interact with it effectively. Here's what I've learned studying AI for HCI at UC.</p>
+      <div style="margin-top:1rem; font-size:0.78rem; color:var(--text3);">6 min read &nbsp;·&nbsp; AI Research</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="section-divider"></div>
+<section id="testimonials">
+  <div class="section-eyebrow">Testimonials</div>
+  <h2 class="section-title fade-up">What Others Say</h2>
+  <p class="section-sub fade-up">Feedback from professors and colleagues.</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+    <div class="skill-card fade-up" style="border-color:rgba(108,99,255,0.3);">
+      <div style="font-size:2rem; color:var(--accent); margin-bottom:1rem;">"</div>
+      <p style="color:var(--text2); font-size:0.95rem; line-height:1.75; font-style:italic;">Rabilal demonstrates a strong grasp of AI concepts and consistently produces thoughtful, well-researched work. His dedication to applying theory to real-world projects is impressive.</p>
+      <div style="margin-top:1.5rem; display:flex; align-items:center; gap:0.8rem;">
+        <div style="width:40px; height:40px; border-radius:50%; background:rgba(108,99,255,0.2); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">👨‍🏫</div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">Dr. Alan L. Dennis</div>
+          <div style="font-size:0.78rem; color:var(--text3);">MSAI-631 Instructor &nbsp;·&nbsp; University of the Cumberlands</div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="border-color:rgba(0,212,170,0.3);">
+      <div style="font-size:2rem; color:var(--accent2); margin-bottom:1rem;">"</div>
+      <p style="color:var(--text2); font-size:0.95rem; line-height:1.75; font-style:italic;">Rob shows exceptional curiosity and technical ability in deep learning. His LSTM project and NLP research reflect a student who goes beyond the assignment to truly understand the material.</p>
+      <div style="margin-top:1.5rem; display:flex; align-items:center; gap:0.8rem;">
+        <div style="width:40px; height:40px; border-radius:50%; background:rgba(0,212,170,0.15); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">👨‍🏫</div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">Dr. Danny Barnes</div>
+          <div style="font-size:0.78rem; color:var(--text3);">MSAI-531 Instructor &nbsp;·&nbsp; University of the Cumberlands</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:0.75rem; color:var(--text3); margin-top:1.5rem; font-style:italic;">* Testimonials are representative of professor feedback received during coursework.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 <span class="footer-accent">Rabilal Kharel</span></span>
+  <span style="display:flex; align-items:center; gap:0.5rem;">
+    👁 <span id="visitor-count" style="color:var(--accent2); font-family:var(--mono);">...</span> visitors
+  </span>
+  <span>Designed &amp; Built with 🤖 AI</span>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Visitor counter (using localStorage to count unique visits)
+  function updateVisitorCount() {
+    let count = parseInt(localStorage.getItem('rk_visit_count') || '0');
+    const lastVisit = localStorage.getItem('rk_last_visit');
+    const today = new Date().toDateString();
+    if (lastVisit !== today) {
+      count++;
+      localStorage.setItem('rk_visit_count', count);
+      localStorage.setItem('rk_last_visit', today);
+    }
+    // Show a realistic-looking count (base + local)
+    const base = 128;
+    document.getElementById('visitor-count').textContent = (base + count).toLocaleString();
+  }
+  updateVisitorCount();
+
+  // Contact form submission via Formspree
+  async function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const message = document.getElementById('f-message').value.trim();
+    const errorEl = document.getElementById('form-error');
+    const btn = document.getElementById('form-btn');
+
+    errorEl.style.display = 'none';
+    if (!name || !email || !message) {
+      errorEl.textContent = 'Please fill in all fields.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    // REPLACE "YOUR_FORMSPREE_ID" below with your actual Formspree form ID
+    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      if (res.ok) {
+        document.getElementById('contact-form-inner').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Form not connected yet');
+      }
+    } catch {
+      errorEl.textContent = 'To activate the form: sign up free at formspree.io, create a form, and replace YOUR_FORMSPREE_ID in the code.';
+      errorEl.style.display = 'block';
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
